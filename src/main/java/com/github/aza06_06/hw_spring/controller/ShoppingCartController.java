@@ -1,17 +1,18 @@
 package com.github.aza06_06.hw_spring.controller;
 
 import com.github.aza06_06.hw_spring.Service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/store/order")
-
 public class ShoppingCartController {
 
-    private ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
 
+    @Autowired
     public ShoppingCartController(ShoppingCartService shoppingCartService) {
         this.shoppingCartService = shoppingCartService;
     }
@@ -25,4 +26,6 @@ public class ShoppingCartController {
     public List<Integer> getItems(@RequestParam String sessionId) {
         return shoppingCartService.getItems(sessionId);
     }
+
 }
+
