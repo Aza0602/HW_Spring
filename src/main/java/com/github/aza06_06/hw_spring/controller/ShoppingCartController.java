@@ -17,7 +17,7 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
     }
 
-    @PostMapping("/add")
+    @GetMapping("/add")
     public void addItem(@RequestParam String sessionId, @RequestParam int itemId) {
         shoppingCartService.addItem(sessionId, itemId);
     }
