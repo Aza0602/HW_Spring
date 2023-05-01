@@ -18,13 +18,13 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/add")
-    public void addItem(@RequestParam String sessionId, @RequestParam int itemId) {
-        shoppingCartService.addItem(sessionId, itemId);
+    public void addItem(@RequestParam List<Integer> ids) {
+        shoppingCartService.addItem(ids);
     }
 
     @GetMapping("/get")
-    public List<Integer> getItems(@RequestParam String sessionId) {
-        return shoppingCartService.getItems(sessionId);
+    public List<Integer> getItems() {
+        return shoppingCartService.getItems();
     }
 
 }

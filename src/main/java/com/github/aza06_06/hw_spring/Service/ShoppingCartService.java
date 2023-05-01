@@ -4,31 +4,21 @@ import com.github.aza06_06.hw_spring.model.ShoppingCart;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ShoppingCartService {
 
-    private final Map<String, ShoppingCart> shoppingCarts = new ConcurrentHashMap<>();
+    private final ShoppingCart shoppingCart;
 
-    public ShoppingCart getShoppingCart(String sessionId) {
-        return new ShoppingCart();
-                /*shoppingCarts.computeIfAbsent(sessionId, key -> new ShoppingCart());*/
+    public ShoppingCartService(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
-    public void addItem(String sessionId, int itemId) {
-        ShoppingCart shoppingCart = new ShoppingCart();
-                /*getShoppingCart(sessionId);*/
-        shoppingCart.getItemIds().add(itemId);
-        shoppingCart.put(sessionId, shoppingCart);
+    public void addItem(List<Integer> ids) {
+        shoppingCart.add(ids);
     }
 
-    public List<Integer> getItems(String sessionId) {
-        ShoppingCart shoppingCart = getShoppingCart(sessionId);
-        if (shoppingCart == null) {
-            return null;
-        }
+    public List<Integer> getItems() {
         return shoppingCart.getItemIds();
     }
 
